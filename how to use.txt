@@ -1,0 +1,37 @@
+---------------===============| What is this thing? |===============---------------
+
+This is an Image Steganography programme, which can be used to embed (and hide) files and/or text on BMP images.
+Depending on their size, even other images can be embedded inside an HD image! (to be implemented)
+Steganography is commonly used to reduce storage space and hide data.
+This reveals to be a quite powerful security resource when combined with cryptography.
+
+---------------===============| How do I use this ? |===============---------------
+
+Embedding process:
+For doing this, you should have an BMP image (Right-click your image and left-click "Properties", there will be a field named "File type") and a smaller file of any type (preferrably text, other types are sometimes corrupted in the process).
+Open menu.exe and type "1".
+Then, type the BPP (see below) number and the names of your files.
+Two output files shall be produced:
+	*bin.txt: you can delete this if you want, but it might be useful for recovering your content if it somehow gets corrupted;
+	*out.bmp: if done corectly, an almost indistinguishable image which also holds your second file.
+
+Extraction process:
+For doing this, you should have an image that has been processed by the programme.
+Open menu.exe and type "2".
+Then, type the BPP (see below) number and the name of the image.
+One output file shall be produced:
+	*rec.html: An IE-friendly HTML which displays your message (or your file), followed by 5 0x00 bytes. 
+		   At the end, there is a binary sequence which represents the message above it.
+
+---------------===============| What does BPP mean? |===============---------------
+
+The BPP (BYTES per pixel, not the standard BITS per pixel) number shall be asked at the start of each individual task (codification & decodification).
+This number is the number of bytes the programme shall skip when modifying the values of the pixels.
+Normally, you'll want to change the least significant bit of each colour.
+In this case, the number is given by the following formula: BPP (sttandard BITS per colour) / 8.
+The most common values for that number are: 1 (1 byte per colour, 8 bits, 256 colours) and 3 ( 3 bytes per colour, 24 bits, "True colour").
+
+---------------===============| How does this work? |===============---------------
+
+This programme works by changing the least significant bit of each pixel (or each colour of each pixel, if you divide the BPP number by 3) to the message bit.
+Those bits are then recovered, recompiled and translated onto readable messages.
